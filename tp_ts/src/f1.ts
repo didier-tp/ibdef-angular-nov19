@@ -1,4 +1,5 @@
 var y : number;
 var x : number;
-x=18;
+x=21;
+//x="abc";
 console.log(x);
