@@ -1,6 +1,7 @@
 <p>calcul de Tva</p>
 ht : <input [(ngModel)]="ht" (input)="onCalculTva()"
      [style.color]="ht>=0?'blue':'red'"/> <br/>
+     
 taux: <select [(ngModel)]="taux"
               (change)="onCalculTva()">
    <option *ngFor="let t of listeTaux">{{t}}</option>

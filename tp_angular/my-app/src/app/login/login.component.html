@@ -1,0 +1,13 @@
+<p>login works!</p>
+<form #formLogin="ngForm" >
+  username: <input name="username" pattern=".{3,}" required
+            [(ngModel)]="login.username" /> <br/>
+  password: <input type="password" name="password" required
+            [(ngModel)]="login.password" /> <br/>
+  roles: <input name="roles" required 
+            [(ngModel)]="login.roles" /> <br/>
+  <input type="button" value="login" 
+            [disabled]="!formLogin.form.valid"
+            (click)="onLogin()" /> <br/>
+</form>
+{{message}}
