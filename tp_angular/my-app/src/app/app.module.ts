@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { BsUtilModule } from 'src/bs-util/bs-util.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    BsUtilModule
   ],
   providers: [],
   bootstrap: [AppComponent]
