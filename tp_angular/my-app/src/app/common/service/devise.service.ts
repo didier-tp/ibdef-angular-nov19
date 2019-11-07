@@ -20,7 +20,19 @@ export class DeviseService {
   //public rechercherToutesDevises() : Promise<Devise[]>{
   public rechercherToutesDevises() : Observable<Devise[]>{
     //return of(this.simuTabDevises);//simulation temporaire
+
     let wsUrl ="./devise-api/public/devise";
+    //NB: cette url relative sera automatiquement préfixée
+    // selon ng serve --proxy-config proxy.conf.json en développement
+    // et selon une configuration équivalente en production 
+    //(ex: reverse proxy nginx)
+
+    //wsUrl="http://localhost:8282/devise-api/public/devise"; 
+    //refusé car pas d'autorisation CORS coté serveur (v1)
+    
+    //wsUrl="http://localhost:8181/spring-boot-backend/rest/devise-api/public/devise";
+    //autorisé car autorisation CORS coté serveur (v2)
+
     return this.http.get<Devise[]>(wsUrl);
   }
 

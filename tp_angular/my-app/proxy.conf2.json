@@ -1,0 +1,7 @@
+{ "/devise-api" : { "secure" : "false" ,
+                   "target" : "http://localhost:8181/spring-boot-backend/rest" 
+                  },
+  "/login-api" : { "secure" : "false" ,
+                    "target" : "http://localhost:8181/spring-boot-backend/rest" 
+                   }
+ }
