@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Login } from '../common/data/login';
 import { LoginService } from '../common/service/login.service';
+import { LoginResponse } from '../common/data/loginResponse';
 
 @Component({
   selector: 'app-login',
@@ -13,12 +14,24 @@ export class LoginComponent implements OnInit {
   message:string;
 
   onLogin(){
+    /*
     this.message="login="+JSON.stringify(this.login);
     console.log(this.message); //+ {{message}} coté html
+    */
+    this.loginService.postLogin(this.login)
+        .subscribe(
+          (loginResponse:LoginResponse)=>{
+                    this.message=JSON.stringify(loginResponse);
+                },
+          (err)=>{this.message="err:"+err;}
+        );
   }
 
   constructor(private loginService : LoginService) {
     //injection de dépendance pour déléguer des appels
+    this.login.username="admin1";
+    this.login.password="pwdadmin1";
+    this.login.roles="admin,user";
    }
 
   ngOnInit() {
