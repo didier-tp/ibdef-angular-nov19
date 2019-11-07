@@ -21,10 +21,16 @@ export class LoginComponent implements OnInit {
     this.loginService.postLogin(this.login)
         .subscribe(
           (loginResponse:LoginResponse)=>{
-                    this.message=JSON.stringify(loginResponse);
+                    this.analyserLoginReponse(loginResponse);
                 },
           (err)=>{this.message="err:"+err;}
         );
+  }
+
+  analyserLoginReponse(loginResponse:LoginResponse){
+    console.log(JSON.stringify(loginResponse));
+    this.message=loginResponse.message;
+    //...
   }
 
   constructor(private loginService : LoginService) {

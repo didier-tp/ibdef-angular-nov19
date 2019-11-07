@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map , tap } from 'rxjs/operators';
 import { Login } from '../data/login';
 import { LoginResponse } from '../data/loginResponse';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -19,6 +20,16 @@ export class LoginService {
     //avec ng serve --proxy-config proxy.conf.json
     return this.http.post<LoginResponse>(wsUrl ,
                       login,
-                      {headers: this._headers} );
+                      {headers: this._headers} )
+                .pipe(
+                    map( (r : LoginResponse) => 
+                          { r.message = r.message.toUpperCase();
+                             return r;}),
+                    tap( (r : LoginResponse) => 
+                          { localStorage.setItem('token',r.token);      })
+                ) 
+            // map( ()=>{}) effectue une transformation 
+            // tap( ()=>{}) ne transforme rien mais effectue un
+                            //traitement supplémentaire
   }
 }
