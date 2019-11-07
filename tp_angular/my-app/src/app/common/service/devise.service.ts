@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Devise } from '../data/devise';
 import { ResConv } from '../data/resconv';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,19 +17,18 @@ export class DeviseService {
   ];
 
   //public rechercherToutesDevises() : Promise<Devise[]>{
-  //public rechercherToutesDevises() : Observable<Devise[]>{
-  public rechercherToutesDevises() : Devise[]{
-    return this.simuTabDevises;//simulation temporaire
+  public rechercherToutesDevises() : Observable<Devise[]>{
+    return of(this.simuTabDevises);//simulation temporaire
   }
 
   public convertir(source : string,
                    target:string,
-                   amount : number) : ResConv{
+                   amount : number) : Observable<ResConv>{
     //code temporaire (simulation):                     
-    return { source : source , 
+    return of({ source : source , 
              target : target , 
              amount : amount ,
-             result : amount * 1.1 };
+             result : amount * 1.1 });
   }
 
 }

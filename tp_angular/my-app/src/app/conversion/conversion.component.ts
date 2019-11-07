@@ -17,18 +17,26 @@ export class ConversionComponent implements OnInit {
 
   listeDevises : Devise[];//pour option de select
 
-  onConvertir(){
-    let resConv : ResConv = 
-      this.deviseService.convertir(this.codeSource,
-                                this.codeCible,
-                                this.montant);
-      this.resultat = resConv.result;
-  }
+  
 
   constructor(private deviseService : DeviseService) { 
     //injection de dépendance (pour déléguer des appels)
-    this.listeDevises = this.deviseService.rechercherToutesDevises();
+    this.deviseService.rechercherToutesDevises()
+        .subscribe(
+          (tabDevises:Devise[])=>{this.listeDevises=tabDevises;} /*callback en cas de succès différé*/,
+          (err)=>{console.log(err);} /*callback en cas d'erreur différée*/
+        );
   }
+
+  onConvertir(){
+    this.deviseService.convertir(this.codeSource,
+                              this.codeCible,
+                              this.montant)
+          .subscribe(
+              (resConv : ResConv)=>{this.resultat = resConv.result;} /*callback en cas de succès différé*/,
+              (err)=>{console.log(err);} /*callback en cas d'erreur différée*/
+          );
+   }
 
   ngOnInit() {
   }
