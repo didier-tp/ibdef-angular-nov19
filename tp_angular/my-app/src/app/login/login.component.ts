@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Login } from '../common/data/login';
+import { LoginService } from '../common/service/login.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,9 @@ export class LoginComponent implements OnInit {
     console.log(this.message); //+ {{message}} coté html
   }
 
-  constructor() { }
+  constructor(private loginService : LoginService) {
+    //injection de dépendance pour déléguer des appels
+   }
 
   ngOnInit() {
   }
