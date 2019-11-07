@@ -1,1 +1,15 @@
-<p>conversion works!</p>
+<p>conversion de devise</p>
+
+montant: <input [(ngModel)]="montant" /><br/>
+
+monnaieSource: <select [(ngModel)]="codeSource">
+    <option *ngFor="let d of listeDevises">{{d.code}}</option>
+</select> <br/>
+
+monnaieCible: <select [(ngModel)]="codeCible">
+    <option *ngFor="let d of listeDevises">{{d.code}}</option>
+</select> <br/>
+
+<input type="button" value="convertir" (click)="onConvertir()"/><br/>
+
+montant converti : {{resultat}}
