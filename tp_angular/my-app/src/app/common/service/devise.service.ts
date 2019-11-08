@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Devise } from '../data/devise';
-import { ResConv } from '../data/resconv';
+import { ResConv, WithResult } from '../data/resconv';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -36,13 +36,16 @@ export class DeviseService {
     return this.http.get<Devise[]>(wsUrl);
   }
 
+  //types de retour possible :
+  // Observable<any> , Observable<object> , 
+  // Observable<WithResult> , Observable<ResConv>
   public convertir(source : string,
                    target:string,
-                   amount : number) : Observable<ResConv>{
+                   amount : number) : Observable<WithResult>{
     //devise-api/public/convert?source=EUR&target=USD&amount=200
     let wsUrl =`./devise-api/public/convert`+ 
                `?source=${source}&target=${target}&amount=${amount}`;
-    return this.http.get<ResConv>(wsUrl);
+    return this.http.get<WithResult>(wsUrl);
     /*
     //code temporaire (simulation):                     
     return of({ source : source , 

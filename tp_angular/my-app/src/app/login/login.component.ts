@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Login } from '../common/data/login';
 import { LoginService } from '../common/service/login.service';
 import { LoginResponse } from '../common/data/loginResponse';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -30,10 +31,15 @@ export class LoginComponent implements OnInit {
   analyserLoginReponse(loginResponse:LoginResponse){
     console.log(JSON.stringify(loginResponse));
     this.message=loginResponse.message;
-    //...
+    if(loginResponse.status==true){
+      //naviguer vers conversion
+      let link = [ '/conversion' ]; 
+      this._router.navigate( link );
+    }
   }
 
-  constructor(private loginService : LoginService) {
+  constructor(private loginService : 
+              LoginService,private _router: Router) {
     //injection de dépendance pour déléguer des appels
     this.login.username="admin1";
     this.login.password="pwdadmin1";

@@ -4,5 +4,6 @@ y: <input type="number" [(ngModel)]="y" /> <br/>
 <input type="button" value="addition" 
        (click)="onAddition()" /> <br/>
 <input type="button" value="multiplication" 
+       [style.visibility]="modeChoisi=='sophistiquee'?'visible':'hidden'"
        (click)="onMultiplication()" /> <br/>
 res: {{res}}

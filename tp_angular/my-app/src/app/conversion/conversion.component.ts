@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DeviseService } from '../common/service/devise.service';
 import { Devise } from '../common/data/devise';
-import { ResConv } from '../common/data/resconv';
+import { ResConv, WithResult } from '../common/data/resconv';
 
 @Component({
   selector: 'app-conversion',
@@ -33,7 +33,7 @@ export class ConversionComponent implements OnInit {
                               this.codeCible,
                               this.montant)
           .subscribe(
-              (resConv : ResConv)=>{this.resultat = resConv.result;} /*callback en cas de succès différé*/,
+              (resConv : WithResult)=>{this.resultat = resConv.result;} /*callback en cas de succès différé*/,
               (err)=>{console.log(err);} /*callback en cas d'erreur différée*/
           );
    }

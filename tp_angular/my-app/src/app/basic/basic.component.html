@@ -1,5 +1,8 @@
 <div class="intermediaire">
     <p>basic works!</p>
+    <a [routerLink]="[ '/basic' , 'tva' ]" >tva</a> &nbsp;
+    <a routerLink="/basic/calculatrice/simple" >calculatrice simple</a><br/>
+    <a routerLink="/basic/calculatrice/sophistiquee" >calculatrice sophistiquee</a><br/>
     <!--
     <tabset>
       <tab heading="calculatrice">
@@ -10,12 +13,17 @@
       </tab>
     </tabset>
   -->
- 
+     <router-outlet></router-outlet>
+      <!-- tva ou calculatrice selon 
+            fin des urls du routing -->
+
+    <!--
       <bsu-toggle-panel title="calculatrice">
         <app-calculatrice></app-calculatrice>
       </bsu-toggle-panel> 
       <bsu-toggle-panel title="tva">
         <app-tva></app-tva>
       </bsu-toggle-panel>
+    -->
    
 </div>
